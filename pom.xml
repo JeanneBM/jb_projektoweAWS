@@ -140,5 +140,18 @@
     </profile>
   </profiles>
 
+        <distributionManagement>
+                <repository>
+                        <id>artifactory</id>
+                        <name>release</name>
+                        <url>http://artifactorycompose:8081/artifactory/libs-release-local</url>
+                </repository>
+                <snapshotRepository>
+                        <id>artifactory</id>
+                        <name>snapshots</name>
+                        <url>http://artifactorycompose:8081/artifactory/libs-snapshot-local</url>
+                </snapshotRepository>
+        </distributionManagement>
+        
 </project>
 

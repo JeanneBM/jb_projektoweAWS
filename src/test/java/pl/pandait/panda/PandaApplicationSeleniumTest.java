@@ -1,6 +1,9 @@
 package pl.pandait.panda;
 
-
+import org.openqa.selenium.remote.DesiredCapabilities;
+import java.net.URL;
+import java.net.MalformedURLException;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,19 +17,14 @@ public class PandaApplicationSeleniumTest {
     private static WebDriver driver;
 
     @BeforeAll
-    public static void startup() throws InterruptedException {
-        //Driver znajduje się w resource
-        System.setProperty("webdriver.gecko.driver", "src/resources/geckodriver");
-        //Ścieżka do Firefoxa - jeżeli nie działa trzeba sprawdzić, gdzie FF jest zainstalowany!
-        System.setProperty("webdriver.firefox.bin", "/usr/bin/firefox");
+    public static void startup() throws MalformedURLException, InterruptedException {
         FirefoxOptions capabilities = new FirefoxOptions();
-        capabilities.setCapability("marionette", true);
-
+        capabilities.setCapability("marionette", true);        
         // Tworzymy nową instancję Firefoxa
-        driver = new FirefoxDriver(capabilities);
+        driver = new RemoteWebDriver(new URL("http://selenium-hubcompose:4444/wd/hub"), capabilities);
         // Otwieramy stronę
         // Pamiętaj, że aplikacja Spring musi działać! To znaczy też musi być włączona.
-        driver.get("http://localhost:8080/");
+        driver.get("http://pandaapp:8080/");
         // Wyświetlamy informacje, że udało się otwozyć stronę
         System.out.println("Successfully opened the website");
         //Czekamy 2 sekundy
