@@ -21,8 +21,8 @@ public class PandaApplicationSeleniumTest {
     
     private static WebDriver driver;
     
-    @LocalServerPort
-    private int port;
+    // @LocalServerPort
+    // private int port;
     
     @BeforeEach
     public void startup() throws InterruptedException, MalformedURLException {
@@ -32,7 +32,7 @@ public class PandaApplicationSeleniumTest {
         driver = new RemoteWebDriver(new URL("http://192.168.44.44:4444/wd/hub"), capabilities);
         // Pamiętaj, że aplikacja Spring musi działać! To znaczy też musi być włączona.
         
-        driver.get(String.format("http://jenkins2:%d/", port));
+        driver.get(String.format("http://localhost:%d/", 8080));
 
         //Czekamy 2 sekundy
         Thread.sleep(2000);
